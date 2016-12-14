@@ -1,0 +1,47 @@
+<jcr='http://www.jcp.org/jcr/1.0'>
+<nt='http://www.jcp.org/jcr/nt/1.0'>
+<mix='http://www.jcp.org/jcr/mix/1.0'>
+<quddity='http://quiddity.org/ns/quddity'>
+
+// Base
+[quiddity:entity] > mix:versionable, mix:created, mix:lastModified, mix:referenceable abstract
+  mixin
+  
+// Donor
+[donors]
+  orderable
+  + *(donor)
+    = donor
+  
+// Donor
+[donor] > quiddity:entity
+  - donor_id (string)
+    mandatory
+  + specimens (specimens)
+    = specimens
+    autocreated
+
+// Specimens
+[specimens]
+  orderable
+  + *(specimen)
+    = specimen
+       
+// Specimen
+[specimen] > quiddity:entity
+  - specimen_id (string)
+    mandatory
+  + samples(samples)
+    = samples
+    autocreated
+    
+// Samples
+[samples]
+  orderable
+  + *(sample)
+    = sample
+       
+// Sample
+[sample] > quiddity:entity
+  - sample_id (string)
+    mandatory
